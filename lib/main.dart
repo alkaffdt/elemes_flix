@@ -1,4 +1,5 @@
 import 'package:elemes_flix/src/features/home/presentation/home_page.dart';
+import 'package:elemes_flix/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,11 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Elemes Flix',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 165, 32, 20),
-          ),
-        ),
+        theme: AppTheme.theme,
         home: const HomePage(),
       ),
     );
