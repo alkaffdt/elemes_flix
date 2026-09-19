@@ -18,12 +18,12 @@ class WishlistController extends StateNotifier<List<MediaItem>> {
 
   void addMedia(MediaItem item) {
     state = [...state, item];
-    localStorageService.addWishlist(item);
+    localStorageService.updateLocalWishlist(state);
   }
 
   void removeMedia(int id) {
     state = state.where((element) => element.id != id).toList();
-    localStorageService.removeWishlist(id);
+    localStorageService.updateLocalWishlist(state);
   }
 
   bool isBookmarked(int id) {

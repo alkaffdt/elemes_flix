@@ -39,8 +39,8 @@ class SharedPreferencesRepository {
     sharedPreferences.setInt(key, date);
   }
 
-  String getString(String key) {
-    return sharedPreferences.getString(key) ?? "";
+  String? getString(String key) {
+    return sharedPreferences.getString(key);
   }
 
   List<String> getStringList(String key) {

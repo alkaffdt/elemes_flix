@@ -2,6 +2,7 @@ import 'package:elemes_flix/extensions/navigation_extension.dart';
 import 'package:elemes_flix/src/features/Wishlist/presentation/wishlist_page.dart';
 import 'package:elemes_flix/src/features/home/presentation/home_tabbar_widget.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_list_view.dart';
+import 'package:elemes_flix/src/features/home/presentation/providers/search_controller_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/searchbar_toggle_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/tabbar_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/search_result_view.dart';
@@ -32,6 +33,7 @@ class HomePage extends ConsumerWidget {
             icon: const Icon(Icons.search),
             onPressed: () {
               ref.read(showSearchbarProvider.notifier).state = true;
+              ref.read(searchBarControllerProvider).searchContents('');
             },
           ),
         ],

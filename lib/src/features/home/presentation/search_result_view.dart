@@ -24,9 +24,13 @@ class _NowPlayingViewState extends ConsumerState<SearchResultView> {
 
   @override
   Widget build(BuildContext context) {
+    final pagingController = ref
+        .watch(searchBarControllerProvider)
+        .pagingController;
+
     return PagedGridView<int, MediaItem>(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      pagingController: ref.watch(searchBarControllerProvider).pagingController,
+      pagingController: pagingController,
       padding: const EdgeInsets.symmetric(horizontal: 4),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -38,6 +42,10 @@ class _NowPlayingViewState extends ConsumerState<SearchResultView> {
         itemBuilder: (context, movie, index) {
           return ContentCard(movie);
         },
+        noItemsFoundIndicatorBuilder: (context) {
+          return const Center(child: Text('No results found'));
+        },
+        animateTransitions: true,
       ),
     );
   }

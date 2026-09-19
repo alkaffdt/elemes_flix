@@ -79,6 +79,7 @@ class _BookmarkButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(wishlistControllerProvider);
     final isWishlisted = ref
         .watch(wishlistControllerProvider.notifier)
         .isBookmarked(media.id!);

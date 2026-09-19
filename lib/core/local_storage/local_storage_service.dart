@@ -17,23 +17,20 @@ class LocalStorageService {
   LocalStorageService({required this.repository});
 
   List<MediaItem> getWishlist() {
-    final rawData = repository.getStringList(LocalStorageKeys.wishlist);
-    return rawData.map((e) => MediaItem.fromJson(json.decode(e))).toList();
+    final rawData = repository.getString(LocalStorageKeys.wishlist);
+
+    if (rawData == null) {
+      return [];
+    }
+
+    return json
+        .decode(rawData)
+        .map<MediaItem>((e) => MediaItem.fromJson(e))
+        .toList();
   }
 
-  void addWishlist(MediaItem media) {
-    final currentWishlist = repository.getStringList(LocalStorageKeys.wishlist);
-    currentWishlist.add(media.toJson().toString());
-    //
-    repository.setStringList(LocalStorageKeys.wishlist, currentWishlist);
-  }
-
-  void removeWishlist(int id) {
-    final currentWishlist = repository.getStringList(LocalStorageKeys.wishlist);
-    currentWishlist.removeWhere(
-      (element) => MediaItem.fromJson(json.decode(element)).id == id,
-    );
-    //
-    repository.setStringList(LocalStorageKeys.wishlist, currentWishlist);
+  void updateLocalWishlist(List<MediaItem> medias) {
+    final currentDatas = json.encode(medias.map((e) => e.toJson()).toList());
+    repository.setString(LocalStorageKeys.wishlist, currentDatas);
   }
 }
