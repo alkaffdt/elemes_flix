@@ -1,4 +1,7 @@
+import 'package:elemes_flix/extensions/int_extensions.dart';
+import 'package:elemes_flix/src/features/home/presentation/providers/searchbar_toggle_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/tabbar_provider.dart';
+import 'package:elemes_flix/src/features/home/presentation/search_bar_widget.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -22,6 +25,11 @@ class __TabbarState extends ConsumerState<HomeTabbarMenu>
   @override
   Widget build(BuildContext context) {
     final tabbarController = ref.watch(homeTabbarProvider).controller;
+    final showSearchbar = ref.watch(showSearchbarProvider);
+
+    if (showSearchbar) {
+      return const SearchBarWidget();
+    }
 
     // show loading indicator while tab controller is being initialized
     if (tabbarController == null) {

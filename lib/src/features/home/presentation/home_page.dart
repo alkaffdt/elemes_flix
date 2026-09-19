@@ -1,23 +1,22 @@
 import 'package:elemes_flix/extensions/navigation_extension.dart';
 import 'package:elemes_flix/src/features/Wishlist/presentation/wishlist_page.dart';
-import 'package:elemes_flix/src/features/home/presentation/home_tabbar.dart';
-import 'package:elemes_flix/src/features/home/presentation/content_card.dart';
+import 'package:elemes_flix/src/features/home/presentation/home_tabbar_widget.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_list_view.dart';
+import 'package:elemes_flix/src/features/home/presentation/providers/searchbar_toggle_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/tabbar_provider.dart';
-import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:elemes_flix/types/tabbar_contents.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:elemes_flix/extensions/int_extensions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Image.asset('assets/images/wordmark_logo.png', height: 100),
         actions: [
@@ -31,7 +30,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // TODO: Implement search functionality
+              ref.read(showSearchbarProvider.notifier).state = true;
             },
           ),
         ],

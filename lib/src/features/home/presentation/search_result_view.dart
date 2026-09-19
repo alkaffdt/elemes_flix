@@ -8,19 +8,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:elemes_flix/types/tabbar_contents.dart';
 
-class ContentsListView extends ConsumerStatefulWidget {
-  const ContentsListView({
-    super.key,
-    this.tabbarType = TabbarContents.nowPlayingMovies,
-  });
-
-  final TabbarContents tabbarType;
+class SearchResultView extends ConsumerStatefulWidget {
+  const SearchResultView({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _NowPlayingViewState();
 }
 
-class _NowPlayingViewState extends ConsumerState<ContentsListView> {
+class _NowPlayingViewState extends ConsumerState<SearchResultView> {
   late PagingController<int, MediaItem> pagingController;
   bool isAvailableNextPage = true;
 
