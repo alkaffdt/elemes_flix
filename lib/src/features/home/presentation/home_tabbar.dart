@@ -44,7 +44,7 @@ class __TabbarState extends ConsumerState<HomeTabbarMenu>
         tabs: [
           Tab(text: 'Now Playing Movies'),
           Tab(text: 'Popular Movies'),
-          Tab(text: 'Now Playing TV'),
+          Tab(text: 'Airing TV Shows'),
           Tab(text: 'Popular TV Shows'),
         ],
       ),

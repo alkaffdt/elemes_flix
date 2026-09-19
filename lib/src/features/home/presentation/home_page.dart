@@ -1,3 +1,5 @@
+import 'package:elemes_flix/extensions/navigation_extension.dart';
+import 'package:elemes_flix/src/features/Wishlist/presentation/wishlist_page.dart';
 import 'package:elemes_flix/src/features/home/presentation/home_tabbar.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_card.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_list_view.dart';
@@ -16,7 +18,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Elemes Flix')),
+      appBar: AppBar(
+        title: const Text('Elemes Flix'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.bookmark_rounded),
+            onPressed: () {
+              context.push(WishlistPage());
+            },
+          ),
+          // 4.toWidthGap(),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // TODO: Implement search functionality
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           20.toHeightGap(),
