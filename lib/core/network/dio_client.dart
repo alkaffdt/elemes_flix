@@ -17,6 +17,7 @@ class DioClient {
     _initHeaders();
     _dio
       ..options.baseUrl = AppApiConfig.baseUrl
+      ..options.queryParameters = {'api_key': AppApiConfig.apiKey}
       ..options.connectTimeout = const Duration(seconds: 15)
       ..options.receiveTimeout = const Duration(seconds: 15)
       ..options.responseType = ResponseType.json

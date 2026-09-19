@@ -39,7 +39,7 @@ class HomeRepositoryDatasourceImpl implements HomeRepositoryDatasource {
       final response = await dioClient.get(AppApiConfig.nowPlayingMovies);
 
       if (response.statusCode == 200) {
-        final List<dynamic> data = response.data;
+        final List<dynamic> data = response.data['results'];
         return data.map((json) => Movie.fromJson(json)).toList();
       } else {
         throw const ServerFailure('Invalid credentials');

@@ -14,4 +14,7 @@ class AppApiConfig {
   // tv shows endpoints
   static const String nowPlayingTvShows = "/tv/airing_today";
   static const String popularTvShows = "/tv/popular";
+
+  // media
+  static const String imagePrefixUrl = "https://image.tmdb.org/t/p/w500";
 }

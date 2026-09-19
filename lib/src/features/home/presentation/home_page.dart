@@ -1,3 +1,4 @@
+import 'package:elemes_flix/src/features/home/presentation/movie_card.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/now_playing_movie_provider.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/gestures.dart';
@@ -34,8 +35,9 @@ class _Body extends ConsumerWidget {
     return state.when(
       data: (movies) {
         return ListView.builder(
+          itemCount: movies.length,
           itemBuilder: (context, index) {
-            return Text('Movie ${movies[index].title}');
+            return MovieCard(movies[index]);
           },
         );
       },
