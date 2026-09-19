@@ -40,7 +40,7 @@ class SearchBarWidget extends ConsumerWidget {
             onPressed: () {
               ref.read(showSearchbarProvider.notifier).state = false;
             },
-            icon: const Icon(Icons.close, color: AppColors.primary),
+            icon: const Icon(Icons.close, size: 36, color: AppColors.primary),
           ),
         ],
       ),

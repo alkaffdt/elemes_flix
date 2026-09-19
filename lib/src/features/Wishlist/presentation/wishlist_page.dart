@@ -8,7 +8,7 @@ class WishlistPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final wishlist = ref.watch(wishlistControllerProvider);
+    final wishlist = ref.watch(wishlistControllerProvider).reversed.toList();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Wishlist')),
