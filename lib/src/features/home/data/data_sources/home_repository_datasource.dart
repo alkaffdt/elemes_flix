@@ -2,18 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:elemes_flix/config/api_config.dart';
 import 'package:elemes_flix/core/error/failures.dart';
 import 'package:elemes_flix/core/network/dio_client.dart';
+import 'package:elemes_flix/shared/models/paged_response_model.dart';
 import 'package:elemes_flix/src/features/home/domain/models/movie_model.dart';
 import 'package:elemes_flix/src/features/home/domain/models/tv_show_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class HomeRepositoryDatasource {
-  Future<List<Movie>> getPopularMovies();
-  Future<List<Movie>> getNowPlayingMovies();
-  Future<List<Movie>> searchMovies(String query);
+  Future<PagedResponse<Movie>> getPopularMovies({int page = 1});
+  Future<PagedResponse<Movie>> getNowPlayingMovies({int page = 1});
+  Future<PagedResponse<Movie>> searchMovies(String query, {int page = 1});
 
   //
-  Future<List<TVShow>> getPopularTvShows();
-  Future<List<TVShow>> getNowPlayingTvShows();
+  Future<PagedResponse<TVShow>> getPopularTvShows({int page = 1});
+  Future<PagedResponse<TVShow>> getNowPlayingTvShows({int page = 1});
 }
 
 final homeRepositoryDatasourceProvider = Provider<HomeRepositoryDatasource>((
@@ -28,19 +29,29 @@ class HomeRepositoryDatasourceImpl implements HomeRepositoryDatasource {
   HomeRepositoryDatasourceImpl(this.dioClient);
 
   @override
-  Future<List<Movie>> getPopularMovies() {
+  Future<PagedResponse<Movie>> getPopularMovies({int page = 1}) {
     // TODO: implement getPopularMovies
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Movie>> getNowPlayingMovies() async {
+  Future<PagedResponse<Movie>> getNowPlayingMovies({int page = 1}) async {
     try {
-      final response = await dioClient.get(AppApiConfig.nowPlayingMovies);
+      final response = await dioClient.get(
+        AppApiConfig.nowPlayingMovies,
+        queryParameters: {'page': page},
+      );
 
       if (response.statusCode == 200) {
-        final List<dynamic> data = response.data['results'];
-        return data.map((json) => Movie.fromJson(json)).toList();
+        final Map<String, dynamic> responseData = response.data;
+        return PagedResponse<Movie>(
+          page: responseData['page'],
+          results: (responseData['results'] as List<dynamic>)
+              .map((json) => Movie.fromJson(json))
+              .toList(),
+          totalPages: responseData['total_pages'],
+          totalResults: responseData['total_results'],
+        );
       } else {
         throw const ServerFailure('Invalid credentials');
       }
@@ -50,19 +61,19 @@ class HomeRepositoryDatasourceImpl implements HomeRepositoryDatasource {
   }
 
   @override
-  Future<List<Movie>> searchMovies(String query) {
+  Future<PagedResponse<Movie>> searchMovies(String query, {int page = 1}) {
     // TODO: implement searchMovies
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TVShow>> getPopularTvShows() {
+  Future<PagedResponse<TVShow>> getPopularTvShows({int page = 1}) {
     // TODO: implement getPopularTvShows
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TVShow>> getNowPlayingTvShows() {
+  Future<PagedResponse<TVShow>> getNowPlayingTvShows({int page = 1}) {
     // TODO: implement getNowPlayingTvShows
     throw UnimplementedError();
   }

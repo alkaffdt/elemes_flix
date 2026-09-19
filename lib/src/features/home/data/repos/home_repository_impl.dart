@@ -1,3 +1,4 @@
+import 'package:elemes_flix/shared/models/paged_response_model.dart';
 import 'package:elemes_flix/src/features/home/data/data_sources/home_repository_datasource.dart';
 import 'package:elemes_flix/src/features/home/domain/models/movie_model.dart';
 import 'package:elemes_flix/src/features/home/domain/models/tv_show_model.dart';
@@ -14,30 +15,30 @@ class HomeRepositoryImpl implements HomeRepository {
   final HomeRepositoryDatasource homeRepositoryDatasource;
 
   @override
-  Future<List<Movie>> getPopularMovies() {
+  Future<PagedResponse<Movie>> getPopularMovies({int page = 1}) {
     // TODO: implement getPopularMovies
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Movie>> getNowPlayingMovies() {
-    return homeRepositoryDatasource.getNowPlayingMovies();
+  Future<PagedResponse<Movie>> getNowPlayingMovies({int page = 1}) {
+    return homeRepositoryDatasource.getNowPlayingMovies(page: page);
   }
 
   @override
-  Future<List<Movie>> searchMovies(String query) {
+  Future<PagedResponse<Movie>> searchMovies(String query, {int page = 1}) {
     // TODO: implement searchMovies
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TVShow>> getPopularTvShows() {
+  Future<PagedResponse<TVShow>> getPopularTvShows({int page = 1}) {
     // TODO: implement getPopularTvShows
     throw UnimplementedError();
   }
 
   @override
-  Future<List<TVShow>> getNowPlayingTvShows() {
+  Future<PagedResponse<TVShow>> getNowPlayingTvShows({int page = 1}) {
     // TODO: implement getNowPlayingTvShows
     throw UnimplementedError();
   }

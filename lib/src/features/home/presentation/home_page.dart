@@ -1,5 +1,5 @@
 import 'package:elemes_flix/src/features/home/presentation/movie_card.dart';
-import 'package:elemes_flix/src/features/home/presentation/providers/now_playing_movie_provider.dart';
+import 'package:elemes_flix/src/features/home/presentation/now_playing_view.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -31,19 +31,7 @@ class _Body extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(nowPlayingMovieProvider);
-    return state.when(
-      data: (movies) {
-        return ListView.builder(
-          itemCount: movies.length,
-          itemBuilder: (context, index) {
-            return MovieCard(movies[index]);
-          },
-        );
-      },
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, stackTrace) => Center(child: Text('Error: $error')),
-    );
+    return NowPlayingView();
   }
 }
 
