@@ -30,7 +30,6 @@ class HomeRepositoryDatasourceImpl implements HomeRepositoryDatasource {
 
   @override
   Future<PagedResponse<Movie>> getPopularMovies({int page = 1}) {
-    // TODO: implement getPopularMovies
     throw UnimplementedError();
   }
 
