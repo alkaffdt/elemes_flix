@@ -1,11 +1,11 @@
 import 'package:elemes_flix/config/api_config.dart';
-import 'package:elemes_flix/src/features/home/domain/models/movie_model.dart';
+import 'package:elemes_flix/src/features/home/domain/models/media_item_model.dart';
 import 'package:flutter/material.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard(this.movie, {super.key});
 
-  final Movie movie;
+  final MediaItem movie;
 
   @override
   Widget build(BuildContext context) {

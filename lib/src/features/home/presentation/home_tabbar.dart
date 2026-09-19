@@ -42,9 +42,9 @@ class __TabbarState extends ConsumerState<HomeTabbarMenu>
           ref.read(homeTabbarProvider.notifier).vChangeTabIndex(index);
         },
         tabs: [
-          Tab(text: 'Top Movies'),
+          Tab(text: 'Now Playing Movies'),
           Tab(text: 'Popular Movies'),
-          Tab(text: 'Top TV Shows'),
+          Tab(text: 'Now Playing TV'),
           Tab(text: 'Popular TV Shows'),
         ],
       ),
