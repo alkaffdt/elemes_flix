@@ -1,3 +1,4 @@
+import 'package:elemes_flix/src/features/home/presentation/providers/now_playing_movie_provider.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Elemes Flix')),
-      body: Column(children: [20.toHeightGap(), _Tabbar(), 16.toHeightGap()]),
+      body: Column(
+        children: [
+          20.toHeightGap(),
+          _Tabbar(),
+          16.toHeightGap(),
+          Expanded(child: _Body()),
+        ],
+      ),
     );
   }
 }
@@ -22,10 +30,17 @@ class _Body extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return const Placeholder();
+    final state = ref.watch(nowPlayingMovieProvider);
+    return state.when(
+      data: (movies) {
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            return Text('Movie ${movies[index].title}');
+          },
+        );
       },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stackTrace) => Center(child: Text('Error: $error')),
     );
   }
 }
