@@ -2,7 +2,7 @@ import 'package:elemes_flix/core/error/failures.dart';
 import 'package:elemes_flix/shared/models/paged_response_model.dart';
 import 'package:elemes_flix/src/features/home/data/repos/home_repository_impl.dart';
 import 'package:elemes_flix/src/features/home/domain/models/media_item_model.dart';
-import 'package:elemes_flix/src/features/home/presentation/movie_card.dart';
+import 'package:elemes_flix/src/features/home/presentation/content_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -75,6 +75,7 @@ class _NowPlayingViewState extends ConsumerState<ContentsListView> {
   Widget build(BuildContext context) {
     return PagedGridView<int, MediaItem>(
       pagingController: pagingController,
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 0.7,
@@ -83,7 +84,7 @@ class _NowPlayingViewState extends ConsumerState<ContentsListView> {
       ),
       builderDelegate: PagedChildBuilderDelegate(
         itemBuilder: (context, movie, index) {
-          return MovieCard(movie);
+          return ContentCard(movie);
         },
       ),
     );

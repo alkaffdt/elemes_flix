@@ -1,5 +1,5 @@
 import 'package:elemes_flix/src/features/home/presentation/home_tabbar.dart';
-import 'package:elemes_flix/src/features/home/presentation/movie_card.dart';
+import 'package:elemes_flix/src/features/home/presentation/content_card.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_list_view.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/tabbar_provider.dart';
 import 'package:elemes_flix/theme/app_colors.dart';

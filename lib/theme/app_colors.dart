@@ -8,4 +8,5 @@ class AppColors {
   static const Color textButtonColor = Color(0xFFFFFFFF);
   static const Color errorColor = Color(0xFFD32F2F);
   static const Color successColor = Color(0xFF28A745);
+  static const Color ratingColor = Color(0xFFFFC107);
 }
