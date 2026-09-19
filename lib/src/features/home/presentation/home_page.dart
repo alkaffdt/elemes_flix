@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Elemes Flix'),
+        title: Image.asset('assets/images/wordmark_logo.png', height: 100),
         actions: [
           IconButton(
             icon: const Icon(Icons.bookmark_rounded),

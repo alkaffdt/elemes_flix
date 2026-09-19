@@ -28,4 +28,15 @@ class MediaItem {
       mediaType: json['media_type'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'backdrop_path': backdropPath,
+      'poster_path': posterPath,
+      'id': id,
+      'vote_average': voteAverage,
+      'vote_count': voteCount,
+      'media_type': mediaType,
+    };
+  }
 }

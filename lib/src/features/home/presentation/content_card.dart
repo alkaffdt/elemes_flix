@@ -1,6 +1,7 @@
 import 'package:elemes_flix/config/api_config.dart';
 import 'package:elemes_flix/extensions/int_extensions.dart';
 import 'package:elemes_flix/extensions/text_style_extension.dart';
+import 'package:elemes_flix/src/features/Wishlist/presentation/providers/wishlist_controller.dart';
 import 'package:elemes_flix/src/features/home/domain/models/media_item_model.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,10 @@ class ContentCard extends StatelessWidget {
               ),
             ),
             _StarRating(mediaItem.voteAverage ?? 0),
-            Align(alignment: Alignment.topRight, child: _BookmarkButton()),
+            Align(
+              alignment: Alignment.topRight,
+              child: _BookmarkButton(mediaItem),
+            ),
           ],
         ),
       ),
@@ -36,18 +40,33 @@ class ContentCard extends StatelessWidget {
 }
 
 class _BookmarkButton extends ConsumerWidget {
-  const _BookmarkButton({super.key});
+  const _BookmarkButton(this.media, {super.key});
+  final MediaItem media;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isWishlisted = ref
+        .watch(wishlistControllerProvider.notifier)
+        .isBookmarked(media.id!);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8)),
         color: Colors.black.withValues(alpha: 0.75),
       ),
       child: IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.bookmark_add_outlined),
+        onPressed: () {
+          if (isWishlisted) {
+            ref
+                .read(wishlistControllerProvider.notifier)
+                .removeMedia(media.id!);
+          } else {
+            ref.read(wishlistControllerProvider.notifier).addMedia(media);
+          }
+        },
+        icon: isWishlisted
+            ? const Icon(Icons.bookmark_added_rounded)
+            : const Icon(Icons.bookmark_add_outlined),
       ),
     );
   }

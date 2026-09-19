@@ -38,7 +38,7 @@ class _NowPlayingViewState extends ConsumerState<ContentsListView> {
       final contents = await fetchRelevantContents();
       isAvailableNextPage = contents.page < contents.totalPages;
 
-      final nextPageKey = page + 1;
+      final nextPageKey = page++;
       if (isAvailableNextPage) {
         pagingController.appendPage(contents.results, nextPageKey);
       } else {
