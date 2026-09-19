@@ -35,10 +35,10 @@ class _NowPlayingViewState extends ConsumerState<ContentsListView> {
 
   void fetchContents({int page = 1}) async {
     try {
-      final contents = await fetchRelevantContents();
+      final contents = await fetchRelevantContents(page);
       isAvailableNextPage = contents.page < contents.totalPages;
 
-      final nextPageKey = page++;
+      final nextPageKey = page + 1;
       if (isAvailableNextPage) {
         pagingController.appendPage(contents.results, nextPageKey);
       } else {
@@ -50,21 +50,21 @@ class _NowPlayingViewState extends ConsumerState<ContentsListView> {
     }
   }
 
-  Future<PagedResponse<MediaItem>> fetchRelevantContents() {
+  Future<PagedResponse<MediaItem>> fetchRelevantContents(int page) {
     final repository = ref.read(homeRepositoryProvider);
 
     switch (widget.tabbarType) {
       case TabbarContents.nowPlayingMovies:
-        return repository.getNowPlayingMovies(page: 1);
+        return repository.getNowPlayingMovies(page: page);
 
       case TabbarContents.popularMovies:
-        return repository.getPopularMovies(page: 1);
+        return repository.getPopularMovies(page: page);
 
       case TabbarContents.nowPlayingTv:
-        return repository.getNowPlayingTvShows(page: 1);
+        return repository.getNowPlayingTvShows(page: page);
 
       case TabbarContents.popularTvShows:
-        return repository.getPopularTvShows(page: 1);
+        return repository.getPopularTvShows(page: page);
 
       default:
         return Future.value();
