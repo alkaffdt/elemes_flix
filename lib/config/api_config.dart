@@ -9,7 +9,6 @@ class AppApiConfig {
   // movies endpoints
   static const String popularMovies = "/movie/popular";
   static const String nowPlayingMovies = "/movie/now_playing";
-  static const String searchMovies = "/search/movie";
 
   // tv shows endpoints
   static const String nowPlayingTvShows = "/tv/airing_today";
@@ -17,4 +16,7 @@ class AppApiConfig {
 
   // media
   static const String imagePrefixUrl = "https://image.tmdb.org/t/p/w500";
+
+  // search
+  static const String search = "/search/multi";
 }

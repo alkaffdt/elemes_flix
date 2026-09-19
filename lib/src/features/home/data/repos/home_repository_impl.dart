@@ -25,8 +25,8 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<PagedResponse<MediaItem>> searchMovies(String query, {int page = 1}) {
-    return homeRepositoryDatasource.searchMovies(query, page: page);
+  Future<PagedResponse<MediaItem>> searchContent(String query, {int page = 1}) {
+    return homeRepositoryDatasource.searchContents(query, page: page);
   }
 
   @override

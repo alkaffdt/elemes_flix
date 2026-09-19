@@ -5,9 +5,14 @@ class MediaItem {
   final double? voteAverage;
   final int? voteCount;
   final String? mediaType;
+  final String? profilePath;
+  final String? name;
 
   bool get isMovie => mediaType == 'movie';
   bool get isTv => mediaType == 'tv';
+  bool get isPerson => mediaType == 'person';
+
+  String? get image => isPerson ? profilePath : posterPath;
 
   MediaItem({
     this.backdropPath,
@@ -16,6 +21,8 @@ class MediaItem {
     this.voteAverage,
     this.voteCount,
     this.mediaType,
+    this.profilePath,
+    this.name,
   });
 
   factory MediaItem.fromJson(Map<String, dynamic> json) {
@@ -26,6 +33,8 @@ class MediaItem {
       voteAverage: json['vote_average'],
       voteCount: json['vote_count'],
       mediaType: json['media_type'],
+      profilePath: json['profile_path'],
+      name: json['name'],
     );
   }
 
@@ -37,6 +46,8 @@ class MediaItem {
       'vote_average': voteAverage,
       'vote_count': voteCount,
       'media_type': mediaType,
+      'profile_path': profilePath,
+      'name': name,
     };
   }
 }

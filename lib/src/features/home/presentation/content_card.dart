@@ -23,18 +23,52 @@ class ContentCard extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Image.network(
-                AppApiConfig.imagePrefixUrl + mediaItem.posterPath!,
+                AppApiConfig.imagePrefixUrl + (mediaItem.image ?? ''),
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey[800],
+                    child: const Icon(Icons.broken_image, color: Colors.white),
+                  );
+                },
               ),
             ),
-            _StarRating(mediaItem.voteAverage ?? 0),
-            Align(
-              alignment: Alignment.topRight,
-              child: _BookmarkButton(mediaItem),
-            ),
+
+            if (!mediaItem.isPerson) ...[
+              _StarRating(mediaItem.voteAverage ?? 0),
+              Align(
+                alignment: Alignment.topRight,
+                child: _BookmarkButton(mediaItem),
+              ),
+            ] else
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: _PersonName(mediaItem),
+              ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _PersonName extends StatelessWidget {
+  const _PersonName(this.mediaItem, {super.key});
+  final MediaItem mediaItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: Colors.black.withValues(alpha: 0.75),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: Text(mediaItem.name ?? '')
+          .mediumSize()
+          .mediumWeight()
+          .textColor(AppColors.textColor)
+          .textAlignment(TextAlign.center),
     );
   }
 }

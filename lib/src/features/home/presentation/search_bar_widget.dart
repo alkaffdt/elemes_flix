@@ -1,4 +1,5 @@
 import 'package:elemes_flix/extensions/int_extensions.dart';
+import 'package:elemes_flix/src/features/home/presentation/providers/search_controller_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/searchbar_toggle_provider.dart';
 import 'package:elemes_flix/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,8 @@ class SearchBarWidget extends ConsumerWidget {
             child: TextField(
               autofocus: true,
               textInputAction: TextInputAction.search,
-              onSubmitted: (value) {
-                //
+              onSubmitted: (keyword) {
+                ref.read(searchBarControllerProvider).searchContents(keyword);
               },
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.only(left: 16, right: 8),

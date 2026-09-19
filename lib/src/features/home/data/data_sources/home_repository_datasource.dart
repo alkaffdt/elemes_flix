@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 abstract class HomeRepositoryDatasource {
   Future<PagedResponse<MediaItem>> getPopularMovies({int page = 1});
   Future<PagedResponse<MediaItem>> getNowPlayingMovies({int page = 1});
-  Future<PagedResponse<MediaItem>> searchMovies(String query, {int page = 1});
+  Future<PagedResponse<MediaItem>> searchContents(String query, {int page = 1});
 
   //
   Future<PagedResponse<MediaItem>> getPopularTvShows({int page = 1});
@@ -81,9 +81,32 @@ class HomeRepositoryDatasourceImpl implements HomeRepositoryDatasource {
   }
 
   @override
-  Future<PagedResponse<MediaItem>> searchMovies(String query, {int page = 1}) {
-    // TODO: implement searchMovies
-    throw UnimplementedError();
+  Future<PagedResponse<MediaItem>> searchContents(
+    String keyword, {
+    int page = 1,
+  }) async {
+    try {
+      final response = await dioClient.get(
+        AppApiConfig.search,
+        queryParameters: {'query': keyword, 'page': page},
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = response.data;
+        return PagedResponse<MediaItem>(
+          page: responseData['page'],
+          results: (responseData['results'] as List<dynamic>)
+              .map((json) => MediaItem.fromJson(json))
+              .toList(),
+          totalPages: responseData['total_pages'],
+          totalResults: responseData['total_results'],
+        );
+      } else {
+        throw const ServerFailure('Invalid credentials');
+      }
+    } on DioException catch (e) {
+      throw ServerFailure(e.response?.data['error'] ?? Failure.defaultMessage);
+    }
   }
 
   @override

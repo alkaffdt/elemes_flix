@@ -6,7 +6,7 @@ abstract class HomeRepository {
   //
   Future<PagedResponse<MediaItem>> getPopularMovies({int page = 1});
   Future<PagedResponse<MediaItem>> getNowPlayingMovies({int page = 1});
-  Future<PagedResponse<MediaItem>> searchMovies(String query, {int page = 1});
+  Future<PagedResponse<MediaItem>> searchContent(String query, {int page = 1});
 
   //
   Future<PagedResponse<MediaItem>> getPopularTvShows({int page = 1});

@@ -3,6 +3,7 @@ import 'package:elemes_flix/shared/models/paged_response_model.dart';
 import 'package:elemes_flix/src/features/home/data/repos/home_repository_impl.dart';
 import 'package:elemes_flix/src/features/home/domain/models/media_item_model.dart';
 import 'package:elemes_flix/src/features/home/presentation/content_card.dart';
+import 'package:elemes_flix/src/features/home/presentation/providers/search_controller_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -16,58 +17,16 @@ class SearchResultView extends ConsumerStatefulWidget {
 }
 
 class _NowPlayingViewState extends ConsumerState<SearchResultView> {
-  late PagingController<int, MediaItem> pagingController;
-  bool isAvailableNextPage = true;
-
   @override
   void initState() {
-    pagingController = PagingController<int, MediaItem>(firstPageKey: 1);
-    pagingController.addPageRequestListener((pageKey) {
-      fetchContents(page: pageKey);
-    });
     super.initState();
-  }
-
-  void fetchContents({int page = 1}) async {
-    try {
-      final contents = await fetchRelevantContents(page);
-      isAvailableNextPage = contents.page < contents.totalPages;
-
-      final nextPageKey = page + 1;
-      if (isAvailableNextPage) {
-        pagingController.appendPage(contents.results, nextPageKey);
-      } else {
-        pagingController.appendLastPage(contents.results);
-      }
-    } catch (e) {
-      isAvailableNextPage = false;
-      pagingController.error = (e as Failure).message;
-    }
-  }
-
-  Future<PagedResponse<MediaItem>> fetchRelevantContents(int page) {
-    final repository = ref.read(homeRepositoryProvider);
-
-    switch (widget.tabbarType) {
-      case TabbarContents.nowPlayingMovies:
-        return repository.getNowPlayingMovies(page: page);
-
-      case TabbarContents.popularMovies:
-        return repository.getPopularMovies(page: page);
-
-      case TabbarContents.nowPlayingTv:
-        return repository.getNowPlayingTvShows(page: page);
-
-      case TabbarContents.popularTvShows:
-        return repository.getPopularTvShows(page: page);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return PagedGridView<int, MediaItem>(
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      pagingController: pagingController,
+      pagingController: ref.watch(searchBarControllerProvider).pagingController,
       padding: const EdgeInsets.symmetric(horizontal: 4),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

@@ -4,6 +4,7 @@ import 'package:elemes_flix/src/features/home/presentation/home_tabbar_widget.da
 import 'package:elemes_flix/src/features/home/presentation/content_list_view.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/searchbar_toggle_provider.dart';
 import 'package:elemes_flix/src/features/home/presentation/providers/tabbar_provider.dart';
+import 'package:elemes_flix/src/features/home/presentation/search_result_view.dart';
 import 'package:elemes_flix/types/tabbar_contents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -52,6 +53,12 @@ class _Body extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final showSearch = ref.watch(showSearchbarProvider);
+
+    if (showSearch) {
+      return const SearchResultView();
+    }
+
     final tabIndex = ref.watch(homeTabbarProvider).tabIndex;
 
     switch (tabIndex) {
