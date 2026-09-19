@@ -22,7 +22,11 @@ class _Body extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Placeholder();
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return const Placeholder();
+      },
+    );
   }
 }
 
