@@ -1,17 +1,60 @@
-# elemes_flix
+<img width="1672" height="941" alt="ChatGPT Image Sep 19, 2026, 10_37_33 PM" src="https://github.com/user-attachments/assets/2f703033-7a4c-43d0-9e57-3c8bd0994238" />
 
-A new Flutter project.
+<img width="280"  alt="image" src="https://github.com/user-attachments/assets/63631170-8612-4d2d-8122-6d92a773755a" />
 
-## Getting Started
+<img width="280"  alt="image" src="https://github.com/user-attachments/assets/f30cb71d-69df-4d2d-8fff-d193e39688f0" />
 
-This project is a starting point for a Flutter application.
+<img width="280"  alt="image" src="https://github.com/user-attachments/assets/9ba48839-7f89-4c96-ad3e-e67e31f2d323" />
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 🚀 Features
+
+### 🟢 Now Playing Movies
+### 🟢 Popular Movies
+### 🟢 On Airing TV Shows
+### 🟢 Popular TV Shows
+
+### Other Features
+- 🟢 Search Movies/TV Show/Artist 
+- 🟢 Wishlist
+- 🟢 Pagination (infinite list)
+
+## Platforms
+### Android : 🟢
+### iOS     : 🟢
+### Web     : ❗️ 
+
+## Suggestions / Potential Improvements
+* Auto-Build & Auto-Deploy to Web using CI/CD
+* Offline Mode
+* Animation Implementation
+* Store API keys & Endpoint into .env file
+
+
+## How to Run the App
+
+1. Clone this repository:
+
+```bash
+   git clone <repository-url>
+```
+
+2. Navigate to the project directory:
+
+```bash
+   cd <project-folder>
+```
+
+3. Install the dependencies:
+
+```bash
+   flutter pub get
+```
+
+4. Run the app:
+
+```bash
+   flutter run
+```
