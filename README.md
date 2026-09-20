@@ -54,70 +54,36 @@ elemes_flix/
 │   │   └── api_config.dart
 │   ├── core/
 │   │   ├── error/
-│   │   │   └── failures.dart
 │   │   ├── local_storage/
-│   │   │   ├── local_storage_keys.dart
-│   │   │   ├── local_storage_service.dart
-│   │   │   └── shared_pref_repo.dart
 │   │   └── network/
-│   │       └── dio_client.dart
 │   ├── extensions/
-│   │   ├── context_extension.dart
-│   │   ├── double_extension.dart
-│   │   ├── int_extensions.dart
-│   │   ├── media_query_extension.dart
-│   │   ├── navigation_extension.dart
-│   │   └── text_style_extension.dart
 │   ├── shared/
 │   │   └── models/
-│   │       └── paged_response_model.dart
+│   │   └── widgets/
+│   │   └── types/
 │   ├── src/
 │   │   ├── features/
 │   │   │   ├── Wishlist/
 │   │   │   │   ├── data/
-│   │   │   │   │   ├── wishlist_datasource.dart
-│   │   │   │   │   └── wishlist_repository_impl.dart
 │   │   │   │   ├── domain/
-│   │   │   │   │   └── wishlist_repository.dart
 │   │   │   │   └── presentation/
 │   │   │   │       ├── providers/
-│   │   │   │       │   └── wishlist_controller.dart
-│   │   │   │       └── wishlist_page.dart
 │   │   │   └── home/
 │   │   │       ├── data/
 │   │   │       │   ├── data_sources/
-│   │   │       │   │   └── home_repository_datasource.dart
 │   │   │       │   └── repos/
-│   │   │       │       └── home_repository_impl.dart
 │   │   │       ├── domain/
 │   │   │       │   ├── models/
-│   │   │       │   │   ├── home_tabbar_state.dart
-│   │   │       │   │   ├── media_item_model.dart
-│   │   │       │   │   ├── search_item_model.dart
-│   │   │       │   │   └── tv_show_model.dart
 │   │   │       │   └── repos/
-│   │   │       │       └── home_repository.dart
 │   │   │       └── presentation/
-│   │   │           ├── content_card.dart
-│   │   │           ├── content_list_view.dart
-│   │   │           ├── home_page.dart
-│   │   │           ├── home_tabbar_widget.dart
 │   │   │           ├── providers/
-│   │   │           │   ├── search_controller_provider.dart
-│   │   │           │   ├── searchbar_toggle_provider.dart
-│   │   │           │   └── tabbar_provider.dart
-│   │   │           ├── search_bar_widget.dart
-│   │   │           └── search_result_view.dart
 │   ├── theme/
-│   │   ├── app_colors.dart
-│   │   └── app_theme.dart
-│   └── types/
-│       └── tabbar_contents.dart
 └── test/
     └── widget_test.dart
 ```
 
 ## 🚀 Suggestions / Potential Improvements
+* OFC its Unit-test/Widget-test/integration-test
 * Auto-Build & Auto-Deploy to Web using CI/CD
 * Offline Mode
 * Animation Implementation
